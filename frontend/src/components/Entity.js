@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 const Entity = () => {
 
     const [entity, setEntity] = useState([]);
 
-    axios.get(`http://localhost:8000/api/entity`).then((entity) => {
-        console.log(entity.data[0])
-        setEntity(entity.data[0]);
-    })
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/entity`).then((entity) => {
+            console.log(entity.data[0])
+            setEntity(entity.data[0]);
+        })
+    }, [])
 
     return (
         <div>
@@ -29,4 +32,9 @@ const Entity = () => {
         </div>
     );
 }
+
+Entity.propTypes = {
+    entity: PropTypes.object.isRequired,
+};
+
 export default Entity;

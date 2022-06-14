@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\TestEntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -83,6 +84,24 @@ class DefaultController extends AbstractController
             ]
         ];
 
+        $response = new Response();
+
+        $response->headers->set('Content-Type', 'application/json');
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+
+        $response->setContent(json_encode($entity));
+
+        return $response;
+    }
+
+    /**
+     * @Route("/api/create/entity", name="create_entity")
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function createEntity(Request $request)
+    {
+        $entity = $request->getContent();
+        
         $response = new Response();
 
         $response->headers->set('Content-Type', 'application/json');
