@@ -2,14 +2,21 @@
 
 namespace App\Controller;
 
+use App\Entity\TestEntity;
 use App\Repository\TestEntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
 
 class DefaultController extends AbstractController
 {
+
+    public function __construct(private EntityManagerInterface $em)
+    {
+    }
+
     #[Route('/default', name: 'app_default')]
     public function index(): Response
     {
@@ -101,13 +108,19 @@ class DefaultController extends AbstractController
     public function createEntity(Request $request)
     {
         $entity = $request->getContent();
-        
+        $newEntity = new TestEntity;
+        $newEntity->setName($request->getContent());
+        $newEntity->setDate(new \DateTime('now'));
+
+        $this->em->persist($newEntity);
+        $this->em->flush();
+
         $response = new Response();
 
         $response->headers->set('Content-Type', 'application/json');
         $response->headers->set('Access-Control-Allow-Origin', '*');
 
-        $response->setContent(json_encode($entity));
+        $response->setContent($entity);
 
         return $response;
     }

@@ -18,15 +18,19 @@ const Entity = () => {
             <section className="row-section">
                 <div className="container">
                     <div className="row">
-                        <h2 className="text-center"><span>List of users</span>Created with <i
-                            className="fa fa-heart"></i> by yemiwebby</h2>
+                        <h2>Axios request to fetch Entity</h2>
                     </div>
-    
-                        <div className={'row'}>
-                        {entity.name}
-                      
-                            pouet
-                        </div>
+
+                    <div className={'row'}>
+                        <ul>
+                            <li>
+                                {entity.id}
+                            </li>
+                            <li>
+                                {entity.name}
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </section>
         </div>

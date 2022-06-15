@@ -3,17 +3,23 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Form, Button, Input, Segment } from 'semantic-ui-react';
 
-const CreateEntity = ({ inputValue, setInputValue }) => {
+const CreateEntity = () => {
  
-    const [entity, setEntity] = useState([]);
+    //const [entity, setEntity] = useState([]);
+    const [inputValue, setInputValue] = useState([]);
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
         setInputValue(evt.target.value);
 
-        axios.get(`http://localhost:8000/api/create/entity`)
+        axios({
+            method: 'post',
+            url: `http://localhost:8000/api/create/entity`,
+            data: inputValue
+        })
             .then((response) => {
-                setEntity(response.data);
+                //setEntity(response.data);
+                console.log('ok axios');
                 console.log(response.data);
             })
             .catch((error) => {
@@ -27,8 +33,6 @@ const CreateEntity = ({ inputValue, setInputValue }) => {
         setInputValue(evt.target.value);
     };
 
-    
-
     return (
         <Segment>
             <Form onSubmit={handleSubmit}>
@@ -41,7 +45,7 @@ const CreateEntity = ({ inputValue, setInputValue }) => {
                     onChange={handleChange}
                 />
             </Form>
-            <Button type='submit'>Créer</Button>
+            <Button type='submit'>Bouton qui sert à rien</Button>
         </Segment>
     )
 }
