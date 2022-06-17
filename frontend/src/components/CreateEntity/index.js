@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
+import { Navigate } from 'react-router-dom'
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Form, Button, Input, Segment } from 'semantic-ui-react';
 
 const CreateEntity = () => {
  
-    //const [entity, setEntity] = useState([]);
     const [inputValue, setInputValue] = useState([]);
 
     const handleSubmit = (evt) => {
@@ -18,9 +18,8 @@ const CreateEntity = () => {
             data: inputValue
         })
             .then((response) => {
-                //setEntity(response.data);
-                console.log('ok axios');
                 console.log(response.data);
+                return <Navigate to='/entities' />
             })
             .catch((error) => {
                 console.error(error);
@@ -29,7 +28,6 @@ const CreateEntity = () => {
 
     const handleChange = (evt) => {
         evt.preventDefault();
-        console.log(evt.target.value);
         setInputValue(evt.target.value);
     };
 
@@ -45,7 +43,10 @@ const CreateEntity = () => {
                     onChange={handleChange}
                 />
             </Form>
-            <Button type='submit'>Bouton qui sert à rien</Button>
+            <Button
+                type='submit'
+                onClick={handleSubmit}
+            >Créer une entité</Button>
         </Segment>
     )
 }

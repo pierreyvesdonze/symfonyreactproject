@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Route, Routes, Link } from 'react-router-dom';
 
 import Users from './Users';
 import Posts from './Posts';
 import Entity from './Entity';
 import CreateEntity from './CreateEntity';
+import Entities from './Entities';
 
 const Home = () => {  
               
@@ -25,6 +26,10 @@ const Home = () => {
                         <li>
                             <Link className={"nav-link"} to={"/entity"}> Entity Test </Link>
                         </li>
+
+                        <li>
+                            <Link className={"nav-link"} to={"/entities"}> Entities </Link>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -36,6 +41,7 @@ const Home = () => {
                 <Route path="/users" element={<Users />} />
                 <Route path="/posts" element={<Posts />} />
                 <Route path="/entity" element={<Entity />} />
+                <Route path="/entities" element={<Entities />} />
             </Routes>
         </div>
     )
