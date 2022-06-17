@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import MiddleContainerStyled from '../MiddleContainerStyled';
 
 class Users extends Component {
     constructor() {
@@ -20,7 +21,7 @@ class Users extends Component {
     render() {
         const loading = this.state.loading;
         return (
-            <div>
+            <MiddleContainerStyled>
                 <div className="row">
                     <h2 className="text-center"><span>List of users</span>Created with <i
                         className="fa fa-heart"></i> by yemiwebby</h2>
@@ -54,7 +55,7 @@ class Users extends Component {
                         )}
                     </div>
                 )}
-            </div>
+            </MiddleContainerStyled>
         )
     }
 }

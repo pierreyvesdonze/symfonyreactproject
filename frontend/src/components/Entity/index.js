@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import MiddleContainerStyled from '../MiddleContainerStyled';
 
 const Entity = () => {
 
@@ -14,7 +15,7 @@ const Entity = () => {
     }, [])
 
     return (
-        <div>
+        <MiddleContainerStyled>
             <section className="row-section">
                 <div className="container">
                     <div className="row">
@@ -33,7 +34,7 @@ const Entity = () => {
                     </div>
                 </div>
             </section>
-        </div>
+        </MiddleContainerStyled>
     );
 }
 

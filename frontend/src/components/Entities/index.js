@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Form, Button, Input, Segment } from 'semantic-ui-react';
-import EntitiesStyled from './EntitiesStyled'
+import MiddleContainerStyled from '../MiddleContainerStyled';
 
 const Entities = () => {
 
@@ -60,7 +60,7 @@ const Entities = () => {
     }
 
     return (
-        <EntitiesStyled className="entities-container">
+        <MiddleContainerStyled className="entities-container">
             {/* Create Entity */}
             <div className="row">
                 <h2>Entities</h2>
@@ -107,7 +107,7 @@ const Entities = () => {
                     ))}
                 </table>
             </div>
-        </EntitiesStyled>
+        </MiddleContainerStyled>
     );
 }
 
