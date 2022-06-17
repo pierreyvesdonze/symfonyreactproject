@@ -4,7 +4,6 @@ import { Route, Routes, Link } from 'react-router-dom';
 import Users from './Users';
 import Posts from './Posts';
 import Entity from './Entity';
-import CreateEntity from './CreateEntity';
 import Entities from './Entities';
 
 const Home = () => {  
@@ -33,10 +32,7 @@ const Home = () => {
                     </ul>
                 </div>
             </nav>
-            <h2>Créer une entité</h2>
-            <CreateEntity
-            />
-
+      
             <Routes>
                 <Route path="/users" element={<Users />} />
                 <Route path="/posts" element={<Posts />} />

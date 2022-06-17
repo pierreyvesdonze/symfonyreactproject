@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Button } from 'semantic-ui-react';
+import { Form, Button, Input, Segment } from 'semantic-ui-react';
 
 const Entities = () => {
 
     const [entities, setEntities] = useState([]);
-
-    useEffect(() => {
+    const [inputValue, setInputValue] = useState([]);
+    
+       useEffect(() => {
         axios
             .get(`http://localhost:8000/api/entities`)
             .then((entities) => {
@@ -14,6 +15,36 @@ const Entities = () => {
                 setEntities(entities.data);
             })
     }, [])
+
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
+        setInputValue(evt.target.value);
+
+        axios({
+            method: 'post',
+            url: `http://localhost:8000/api/create/entity`,
+            data: inputValue
+        })
+            .then((response) => {
+                const newEntity = {
+                    'name': inputValue
+                }
+
+                const newEntities = [...entities, newEntity]
+
+                setEntities(newEntities)
+                setInputValue('');
+                
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+    }
+
+    const handleChange = (evt) => {
+        evt.preventDefault();
+        setInputValue(evt.target.value);
+    };
 
     const handleDelete = (evt) => {
         const entityId = evt.target.value;
@@ -29,9 +60,28 @@ const Entities = () => {
 
     return (
         <div>
-
             <div className="row">
                 <h2>Entities</h2>
+            </div>
+
+            <div className='row'>
+                <Segment>
+                    <Form onSubmit={handleSubmit}>
+                        <Input
+                            fluid
+                            className="input-entity"
+                            icon='edit'
+                            iconPosition='left'
+                            placeholder='name'
+                            value={inputValue}
+                            onChange={handleChange}
+                        />
+                    </Form>
+                    <Button
+                        type='submit'
+                        onClick={handleSubmit}
+                    >Créer une entité</Button>
+                </Segment>
             </div>
 
             <div className={'row'}>
