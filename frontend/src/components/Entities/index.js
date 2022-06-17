@@ -6,8 +6,8 @@ const Entities = () => {
 
     const [entities, setEntities] = useState([]);
     const [inputValue, setInputValue] = useState([]);
-    
-       useEffect(() => {
+
+    useEffect(() => {
         axios
             .get(`http://localhost:8000/api/entities`)
             .then((entities) => {
@@ -34,7 +34,7 @@ const Entities = () => {
 
                 setEntities(newEntities)
                 setInputValue('');
-                
+
             })
             .catch((error) => {
                 console.error(error);
@@ -53,7 +53,7 @@ const Entities = () => {
             .post(`http://localhost:8000/api/delete/entity`, entityId)
             .then((response) => {
                 console.log(newEntites)
-                evt.target.parentNode.remove()
+                evt.target.parentNode.parentNode.remove()
                 setEntities(newEntites)
             })
     }
@@ -84,22 +84,27 @@ const Entities = () => {
                 </Segment>
             </div>
 
-            <div className={'row'}>
-                <ul>
+            <div className={'entities-table'}>
+                <table>
                     {entities.map((entity) => (
-                        <li data-id={entity.id}>
-                            {entity.name} - {entity.date}
+                        <tr>
+                            <td data-id={entity.id}>
+                                {entity.name} - {entity.date}
+                            </td>
+                            <td>
+
                             <Button
                                 type='submit'
                                 onClick={handleDelete}
                                 value={entity.id}
                             >Supprimer
                             </Button>
-                        </li>
+                            </td>
+                        </tr>
                     ))}
-                </ul>
-            </div>
+            </table>
         </div>
+        </div >
 
     );
 }
