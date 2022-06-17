@@ -17,11 +17,13 @@ const Entities = () => {
 
     const handleDelete = (evt) => {
         const entityId = evt.target.value;
+        const newEntites = entities.filter((entity) => entity.id !== entityId)
         axios
             .post(`http://localhost:8000/api/delete/entity`, entityId)
             .then((response) => {
-                console.log(response)
+                console.log(newEntites)
                 evt.target.parentNode.remove()
+                setEntities(newEntites)
             })
     }
 
