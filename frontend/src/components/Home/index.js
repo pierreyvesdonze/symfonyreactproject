@@ -24,35 +24,35 @@ const Home = () => {
                     </Menu.Item>
                 </Link>
 
-                         <Link
-                        className={"nav-link"} to={"/users"}>
-                <Menu.Item
-                    name='users'
-                    active={activeItem === 'users'}
-                    onClick={handleItemClick}
-                >
-                </Menu.Item>
-           </Link>
+                <Link
+                    className={"nav-link"} to={"/users"}>
+                    <Menu.Item
+                        name='users'
+                        active={activeItem === 'users'}
+                        onClick={handleItemClick}
+                    >
+                    </Menu.Item>
+                </Link>
 
                 <Link
-                        className={"nav-link"} to={"/entity"}> 
-                <Menu.Item
-                    name='entity-1'
-                    active={activeItem === 'entity-1'}
-                    onClick={handleItemClick}
-                >
-                </Menu.Item>
-                    </Link>
+                    className={"nav-link"} to={"/entity"}>
+                    <Menu.Item
+                        name='entity-1'
+                        active={activeItem === 'entity-1'}
+                        onClick={handleItemClick}
+                    >
+                    </Menu.Item>
+                </Link>
 
-<Link
-                        className={"nav-link"} to={"/entities"}>
-                <Menu.Item
-                    name='entities'
-                    active={activeItem === 'entities'}
-                    onClick={handleItemClick}
-                >
-                </Menu.Item>
-                    </Link>
+                <Link
+                    className={"nav-link"} to={"/entities"}>
+                    <Menu.Item
+                        name='entities'
+                        active={activeItem === 'entities'}
+                        onClick={handleItemClick}
+                    >
+                    </Menu.Item>
+                </Link>
             </Menu>
 
             <Routes>
