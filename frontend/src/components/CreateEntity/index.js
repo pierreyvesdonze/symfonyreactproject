@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom'
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Form, Button, Input, Segment } from 'semantic-ui-react';
@@ -19,7 +18,7 @@ const CreateEntity = () => {
         })
             .then((response) => {
                 console.log(response.data);
-                return <Navigate to='/entities' />
+                window.location.reload(false)
             })
             .catch((error) => {
                 console.error(error);
