@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Form, Button, Input, Segment } from 'semantic-ui-react';
+import EntitiesStyled from './EntitiesStyled'
 
 const Entities = () => {
 
@@ -59,7 +60,8 @@ const Entities = () => {
     }
 
     return (
-        <div>
+        <EntitiesStyled className="entities-container">
+            {/* Create Entity */}
             <div className="row">
                 <h2>Entities</h2>
             </div>
@@ -84,6 +86,7 @@ const Entities = () => {
                 </Segment>
             </div>
 
+            {/* Entities collection */}
             <div className={'entities-table'}>
                 <table>
                     {entities.map((entity) => (
@@ -92,20 +95,19 @@ const Entities = () => {
                                 {entity.name} - {entity.date}
                             </td>
                             <td>
-
-                            <Button
-                                type='submit'
-                                onClick={handleDelete}
-                                value={entity.id}
-                            >Supprimer
-                            </Button>
+                                <button class="ui button">Modifier</button>
+                                <Button
+                                    type='submit'
+                                    onClick={handleDelete}
+                                    value={entity.id}
+                                >Supprimer
+                                </Button>
                             </td>
                         </tr>
                     ))}
-            </table>
-        </div>
-        </div >
-
+                </table>
+            </div>
+        </EntitiesStyled>
     );
 }
 
